@@ -1,13 +1,16 @@
 const express = require('express');
+const {connection} = require('./config/database');
+
+const userModel = require('./models/User');
 
 const app = express();
 
 // Mongoose
-// Reto conectarse a la base de datos de mongodb
-// uri: mongodb://<dbuser>:<dbpassword>@ds127983.mlab.com:27983/heroku_q8qjqjqj
+connection();
 
-app.get("/",(req,res)=>{
-    res.send("<h1>Hello World</h1>");
+app.get("/", async (req,res)=>{
+    const User = userModel.find();
+    return res.json(User);
 });
 
 app.get("/contacto", (req, res) => {

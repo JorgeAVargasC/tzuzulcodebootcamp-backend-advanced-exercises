@@ -1,26 +1,30 @@
-const express = require('express');
-const {connection} = require('./config/database');
+const express = require("express")
+const {connection} = require("./config/database")
 
-const userModel = require('./models/User');
+const userModel = require("./models/user")
 
-const app = express();
+const app = express()
 
-// Mongoose
-connection();
+//Mongoose
+// uri: mongodb://mongo/myDB
 
-app.get("/", async (req,res)=>{
-    const User = userModel.find();
-    return res.json(User);
-});
+connection()
 
-app.get("/contacto", (req, res) => {
 
+app.get("/",async (req,res)=>{
+    const users = await userModel.find()
+    return res.json(users)
+})
+
+app.get("/contacto",(req,res)=>{
     return res.json({
-        nombre: "Jorge",
-        correo: "javargas1209@gmail.com",
+        nombre:"Tzuzul",
+        correo:"mail@tzuzulcode.com",
+        telefono:232323
     })
-});
+})
 
-app.listen(4000, () => {
-    console.log("Escuchando en http://localhost:4000");
-});
+
+app.listen(4000,()=>{
+    console.log("Escuchando en: http://localhost:4000")
+})

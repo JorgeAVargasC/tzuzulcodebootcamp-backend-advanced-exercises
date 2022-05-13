@@ -1,8 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose")
 
-async function connection() {
-    await mongoose.connect('mongodb://mongo:27017/myDB');
-    console.log('Conectado a la base de datos');
+async function connection(){
+    const conn = await mongoose.connect("mongodb://mongo/myDB")
+    console.log(conn)
+    console.log("Connection established...")
 }
 
-module.exports = {mongoose, connection};
+
+module.exports = {mongoose,connection}

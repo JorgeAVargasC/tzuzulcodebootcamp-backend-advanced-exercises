@@ -8,7 +8,8 @@ COPY package*.json .
 
 RUN npm install
 
-COPY /src /src
+# Si se hace un cambio en /src se sincroniza en el contenedor
+COPY /src ./src
 
 EXPOSE 4000
 
